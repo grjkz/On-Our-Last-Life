@@ -1,0 +1,57 @@
+* { 
+	margin: 0;
+	padding: 0;
+}
+
+/**
+ 
+ * General
+ 
+ */
+
+.error {
+	box-shadow: 0 0 4px 2px red !important;
+}
+
+.instructions {
+	text-align: center;
+	margin-top: 24px;
+}
+/**
+ 
+ * Card
+ 
+ */
+
+.card {
+	width: 400px;
+	margin: 24px auto 32px;
+	background-color: #CCCCCC;
+  padding: 12px;
+  padding-bottom: 46px;
+	box-sizing: border-box;
+	position: relative;
+	box-shadow: 1px 2px 10px rgba(0,0,0,0.4);
+}
+
+.card > * > * {
+	display: block;
+	margin: 16px 0px;
+}
+
+.card textarea,
+.card select,
+.card input {
+	width: 100%;
+}
+
+.card > label {
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.card button {
+  position: absolute;
+  right: 7px;
+  bottom: 0;
+}
