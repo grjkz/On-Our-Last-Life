@@ -99,7 +99,7 @@ $(function() {
 			embed: $('#ep-embed').val().trim()
 		};
 
-		// do nothing if title field is empty
+		// don't submit if title field is empty
 		if (!episode.title) {
 			$('#ep-title').addClass('error');
 			return false;

@@ -8,12 +8,18 @@
 			<li class='dropdown'>
 				<a href="/series">SERIES</a>
 				<ul class='dropdown-menu'>
-					<li><a href="/series/re1">Resident Evil: Directors Cut</a></li>
-					<li><a href="/series/re5">Resident Evil 5</a></li>
+					<!-- each one should hold the ref id to db query -->
+					<li><a href="/series/re1" data-series-id="">Resident Evil: Directors Cut</a></li>
+					<li><a href="/series/re5" data-series-id="">Resident Evil 5</a></li>
 				</ul>
 			</li>
-			<li><a href="/about">ABOUT</a></li>
-			<li><a href="/faq">FAQ</a></li>
+			<li class='dropdown'>
+				<a href="#" class="unclickable">INFO</a>
+				<ul class='dropdown-menu'>
+					<li><a href="/faq">FAQ</a></li>
+					<li><a href="/team">Team</a></li>
+				</ul>
+			</li>
 			<!-- add video for admins -->
 			<li><a href="/admin/content/new">ADD CONTENT</a></li>
 		</ul>

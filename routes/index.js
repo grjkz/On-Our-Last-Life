@@ -9,7 +9,10 @@ var db = require('../db/sql.js');
 router.get('/', function(req,res,next) {
 
 	db.query("SELECT * FROM episodes ORDER BY episode_id DESC LIMIT 1;", function(err, result, fields) {
-		res.render('index', {last_uploaded:result[0]});
+		res.render('index', {
+			page: 'index', 
+			last_uploaded:result[0]
+		});
 	});
 
 });
@@ -18,8 +21,8 @@ router.get('/', function(req,res,next) {
 ///////////
 // ABOUT //
 ///////////
-router.get('/about', function(req,res,next) {
-	res.render('about');
+router.get('/team', function(req,res,next) {
+	res.render('team', {page: 'team'});
 });
 
 
@@ -27,7 +30,7 @@ router.get('/about', function(req,res,next) {
 // FAQ //
 /////////
 router.get('/faq', function(req,res,next) {
-	res.render('faq');
+	res.render('faq', {page: 'faq'});
 });
 
 
@@ -35,6 +38,7 @@ router.get('/faq', function(req,res,next) {
 // SERIES //
 ////////////
 router.get('/series', function(req,res,next) {
+	// return all series with number of episodes, even if zero episodes
 	db.query("SELECT s.*, count(e.episode_id) as episodes FROM series as s LEFT JOIN episodes as e ON s.series_id = e.series_id GROUP BY s.series_id;", function(err, results, fields) {
 
 		res.render('series', results);

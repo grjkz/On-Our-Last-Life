@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/stylesheets/header.css">
-	<link rel="stylesheet" href="/stylesheets/add_content.css">
+	<% include partials/console_styles %>
 	<title>Add Content</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
 		<div id="global-message"></div>
 
 		<div class="instructions">
-			<span style='color:#ff0000;'>*</span> detonates madatory field.			
+			<span style='color:#ff0000;'>*</span> denotes madatory field.			
 		</div>
 	
 		<div class="add-series card">
@@ -52,8 +51,6 @@
 	</div>
 
 	
-	<script src="/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="/vendor/velocity/velocity.js"></script>
-	<script src="/javascripts/add_content.js"></script>
+	<% include partials/console_scripts %>
 </body>
 </html>

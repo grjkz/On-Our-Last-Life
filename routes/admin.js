@@ -5,7 +5,10 @@ var db = require('../db/sql.js');
 router.get('/content/new', function(req,res,next) {
 
 	db.query("SELECT * FROM series;", function(err, results, fields) {
-		res.render('add_content', {allSeries: results});
+		res.render('add_content', {
+			page: 'add_content',
+			allSeries: results
+		});
 	});
 
 });

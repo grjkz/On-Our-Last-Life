@@ -1,0 +1,19 @@
+.member {
+	margin-bottom: 32px;
+}
+
+.gamer-alias > span {
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.mdi-playstation:before {
+	background-color: rgba(0, 55, 145, 1);
+  color: white;
+  margin-right: 12px;
+}
+
+.mdi-xbox:before {
+	color: rgba(93, 194, 30, 1);
+	margin-right: 12px;
+}

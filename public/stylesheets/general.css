@@ -1,0 +1,79 @@
+/**
+ * GENERAL ACROSS ALL PAGES
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: rgba(240,240,240,0.1);
+	font-family: Helvetica, sans-serif;
+}
+
+.main {
+	width: 80%;
+	font-size: 18px;
+	margin: 32px auto;
+}
+
+input,
+textarea,
+select,
+button {
+	font-size: 18px;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+select {
+	background-color: white;
+}
+
+button {
+	padding: 5px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.unclickable {
+	/*cursor: default;*/
+}
+
+#global-message {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: yellow;
+	padding: 4px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#to-top-button {
+	position: fixed;
+	right: 32px;
+	bottom: 32px;
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 24px;
+	width: 32px;
+	height:32px;
+	display: table;
+	cursor: pointer;
+}
+
+#to-top-button .mdi-arrow-up {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
