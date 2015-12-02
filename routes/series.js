@@ -31,7 +31,7 @@ router.get('/:series_id', function(req,res,next) {
 
 
 router.get('/:series_id/episode/:ep_num', function(req,res,next) {
-	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ? AND e.ep_num = ? LIMIT 1;", req.params.series_id, req.params.ep_num, function(err, result, fields) {
+	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ? AND e.ep_num = ? LIMIT 1;", [req.params.series_id, req.params.ep_num], function(err, result, fields) {
 		res.render('show_episode', {
 			page: 'show_episode',
 			episode: result[0]
