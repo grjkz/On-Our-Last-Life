@@ -11,42 +11,88 @@
 
 	<div class="main">
 		
+		<h1 class="header-label">
+			Team Members
+		</h1>
+
+		<% members.forEach(function(member) { %>
+		
 		<div class="team-members">
 			<div class="member">
 				<img src="" alt="" class="avatar">
-				<span class="alias">GorEjaKz</span>
-				<div class="gamer-alias">
-					<span class="psn-alias mdi mdi-playstation">GorEjaKz</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span>
+				<span class="username"><%= member.username %></span>
+				<div class="social-links">
+				<% if (member.facebookUrl != null && member.facebookUrl != "") { %>
+						<a href="<%= member.facebookUrl %>">
+							<i class="fb mdi mdi-facebook-box"></i>
+						</a>
+				<% } %>
+				<% if (member.twitterUrl != null && member.twitterUrl != "") { %>
+						<a href="<%= member.twitterUrl %>">
+							<i class="twitter mdi mdi-twitter"></i>
+						</a>
+					</span>
+				<% } %>
+					<!-- <span class="psn-alias mdi mdi-playstation">GorEjaKz</span> -->
+					<!-- <span class="xbox-alias mdi mdi-xbox">None</span> -->
 				</div>
 			</div>
+			
+		<% }) %>
 
 			<div class="member">
 				<img src="" alt="" class="avatar">
-				<span class="alias">EviLRaLpH1</span>
-				<div class="gamer-alias">
+				<span class="username">EviLRaLpH1</span>
+				<div class="social-links">
+					<!-- <span class="fb mdi mdi-facebook-box">
+						<a href=""></a>
+					</span>
+					<span class="twitter mdi mdi-twitter">
+						<a href=""></a>
+					</span>
 					<span class="psn-alias mdi mdi-playstation">EvilRaLpH1</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span>
+					<span class="xbox-alias mdi mdi-xbox">None</span> -->
 				</div>
 			</div>
 
 			<div class="member">
 				<img src="" alt="" class="avatar">
-				<span class="alias">Cobalt87</span>
-				<div class="gamer-alias">
+				<span class="username">Andrew</span>
+				<div class="social-links">
+					<!-- <span class="fb mdi mdi-facebook-box">
+						<a href=""></a>
+					</span>
+					<span class="twitter mdi mdi-twitter">
+						<a href=""></a>
+					</span>
 					<span class="psn-alias mdi mdi-playstation">Cobalt87</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span>
+					<span class="xbox-alias mdi mdi-xbox">None</span> -->
 				</div>
 			</div>
 
 			<div class="member">
 				<img src="" alt="" class="avatar">
-				<span class="alias"></span>
-				<div class="gamer-alias">
-					<!-- <span class="psn-alias mdi mdi-playstation"></span> -->
-					<!-- <span class="xbox-alias mdi mdi-xbox"></span> -->
+				<span class="username">Cobalt87</span>
+				<div class="social-links">
+					<!-- <span class="fb mdi mdi-facebook-box">
+						<a href=""></a>
+					</span>
+					<span class="twitter mdi mdi-twitter">
+						<a href=""></a>
+					</span>
+					<span class="psn-alias mdi mdi-playstation">Cobalt87</span>
+					<span class="xbox-alias mdi mdi-xbox">None</span> -->
 				</div>
 			</div>
+
+			<!-- <div class="member">
+				<img src="" alt="" class="avatar">
+				<span class="username"></span>
+				<div class="gamer-alias">
+					<span class="psn-alias mdi mdi-playstation"></span>
+					<span class="xbox-alias mdi mdi-xbox"></span>
+				</div>
+			</div> -->
 		</div>
 
 

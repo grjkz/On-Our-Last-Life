@@ -1,8 +1,9 @@
 .member {
-	margin-bottom: 32px;
+	padding: 18px 0px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.gamer-alias > span {
+.social-links > span {
 	margin-left: 12px;
 	margin-right: 12px;
 }

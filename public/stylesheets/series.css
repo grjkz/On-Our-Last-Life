@@ -1,0 +1,15 @@
+.series {
+	line-height: 24px;
+	margin-bottom: 32px;
+}
+
+.series .mdi-menu-down {
+	float: right;
+}
+
+.series-description {
+	display: none;
+	padding: 18px;
+	font-size: 16px;
+	color: rgba(0,0,0,0.7);
+}

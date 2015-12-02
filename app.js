@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 ////////////////////////
 var routes_api = require('./routes/api');
 var routes_index = require('./routes/index');
+var routes_series = require('./routes/series');
 var routes_admin = require('./routes/admin');
 
 
@@ -36,12 +37,8 @@ var routes_admin = require('./routes/admin');
 //////////////
 app.use('/api', routes_api);
 app.use('/', routes_index);
+app.use('/series', routes_series);
 app.use('/admin', routes_admin);
-
-
-
-
-
 
 
 

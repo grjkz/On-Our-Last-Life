@@ -3,17 +3,35 @@ var router = express.Router();
 var db = require('../db/sql.js');
 
 
+//////////
+// API  //
+//////////
+
+
+////////////
+// NAVBAR //
+////////////
+router.get('/nav/series', function(req,res,next) {
+	// get all series where episodes exists
+	db.query("SELECT series.series_id, series.name FROM series, episodes WHERE series.series_id = episodes.series_id ORDER BY series.name;", function(err, results, fields) {
+		res.json(results);
+	});
+});
+
+
 ////////////
 // SERIES //
 ////////////
-router.get('/series', function(req,res,next) {
+// last uploaded video
+router.get('/series/recent', function(req,res,next) {
 
 	db.query("SELECT * FROM series;", function(err, result, fields) {
-		res.render('index', {last_uploaded:result[0]});
+		res.json(result[0]);
 	});
 
 });
 
+// add new series
 router.post('/series', function(req,res,next) {
 	db.query("INSERT INTO series SET ?", 
 		{ 
@@ -36,6 +54,7 @@ router.post('/series', function(req,res,next) {
 //////////////
 // EPISODES //
 //////////////
+// get all episodes
 router.get('/episodes', function(req,res,next) {
 
 	db.query("SELECT * FROM episodes;", function(err, result, fields) {
@@ -44,6 +63,14 @@ router.get('/episodes', function(req,res,next) {
 
 });
 
+// get all episodes of specific series
+router.get('/:id/episodes', function(req,res,next) {
+	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = ? AND s.series_id = e.series_id;", req.params.id, function(err, results, fields) {
+		console.log(results)
+	});
+});
+
+// add new episode
 router.post('/episodes', function(req,res,next) {
 	db.query("INSERT INTO episodes SET ?", 
 		{

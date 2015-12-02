@@ -3,25 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<% include partials/console_styles %>
-	<title>On Our Last Life</title>
+	<title><%= episodes[0].name %></title>
 </head>
 <body>
+	
 	<% include partials/header %>
 
 	<div class="main">
 		
-		<div class="news">
-			<h1 class="header-label">
-				News
-			</h1>
-		</div>
-		
-		<div class="latest-video">
-			<%- last_uploaded.embed %>
-		</div>
+		<%= JSON.stringify(episodes) %>
 
 	</div>
-	
+
 
 	<% include partials/console_scripts %>
 </body>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<% include partials/console_styles %>
+	<title>Series</title>
+</head>
+<body>
+	
+	<% include partials/header %>
+
+	<div class="main">
+		
+		<% series.forEach(function(title, index) { %>
+		<div class="series">
+			<!-- should probably use an image here -->
+			<a href="<%= title.series_id %>"><%= title.name %></a>
+			<i class="mdi mdi-menu-down clickable" data-target-index="<%= index %>"></i>
+			<div class="ep-number">Episodes: <%= title.episodes %></div>
+			<p class="series-description" data-description="<%= index %>">
+				<%= title.description %>
+			</p>
+		</div>
+		<% }) %>
+
+	</div>
+
+	<% include partials/console_scripts %>
+</body>
+</html>

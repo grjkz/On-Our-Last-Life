@@ -17,10 +17,43 @@
 	<script src="/javascripts/team.js"></script>
 <% } %>
 
+<% if (page === 'series') { %>
+	<script src="/vendor/velocity/velocity.min.js"></script>
+	<script src="/javascripts/series.js"></script>
+<% } %>
+
+
+<!-- universal js -->
 <script>
 	$(function() {
+
+		/**
+		 * Anything with .unclickable is preventedDefault
+		 */
 		$('.unclickable').click(function(e) {
 			e.preventDefault();
+		});
+
+		/**
+		 * AJAX call for series dropdown-menu in navbar
+		 */
+		$.ajax({
+			type: "GET",
+			url: "/api/nav/series",
+			
+			success: function(allSeries) {
+				// create a li > a for each item
+				allSeries.forEach(function(series) {
+					var listLink = 
+						$('<li> <a href="/series/'+ series.series_id + '">' + series.name + '</a> </li>');
+
+					$('.series.dropdown-menu').append(listLink);
+				});
+			},
+
+			error: function() {
+				console.log('Something went wrong!');
+			}
 		});
 	});
 </script>
