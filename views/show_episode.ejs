@@ -10,10 +10,41 @@
 	<% include partials/header %>
 
 	<div class="main">
-		
-		<%= JSON.stringify(episode) %>
 
-	</div>
+		<div class="episode">
+			<div class="series">
+				<h1><%= episode.name %></h1>
+			</div>
+			<div class="title">
+			<h2><%= episode.title %> Episode: <%= episode.ep_num %></h2>
+			</div>
+
+			<div class="video">
+				<% if (!episode.embed) { %>
+				<h2>Coming soon...</h2>
+				<% } else { %>
+				<%- episode.embed %>
+				<% } %>
+			</div>
+			
+			<div class="ep-nav">
+				<% if (!prevEpIndex || prevEpIndex != "null") { %>
+				<div class="prev-vid">
+					<a href="/series/<%= prevEpIndex.series_id %>/episode/<%= prevEpIndex.ep_num %>">Previous Episode</a>
+				</div>
+				<% } %>
+				<% if (!nextEpIndex || nextEpIndex != "null") { %>
+				<div class="next-vid">
+					<a href="/series/<%= nextEpIndex.series_id %>/episode/<%= nextEpIndex.ep_num %>">Next Episode</a>
+				</div>
+				<% } %>
+			</div>
+			<div class="ep-description">
+				<h3><%= episode.ep_description %></h3>
+			</div>
+		</div>
+
+	</div> <!-- end main -->
 
 
 	<% include partials/console_scripts %>

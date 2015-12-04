@@ -1,0 +1,11 @@
+.episode > div {
+	margin: 24px 0;
+}
+
+.video {
+	text-align: center;
+}
+
+.video > iframe {
+	max-width: 100%;
+}
