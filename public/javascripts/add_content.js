@@ -92,7 +92,8 @@ $(function() {
 		
 		var episode = {
 			series_id: parseInt( $('#ep-series').val() ),
-			episode: $('#ep-num').val().trim(),
+			ep_index: parseInt( $('#ep-index').val().trim() ),
+			ep_num: $('#ep-num').val().trim(),
 			title: $('#ep-title').val().trim(),
 			description: $('#ep-description').val().trim(),
 			href: $('#ep-href').val().trim(),

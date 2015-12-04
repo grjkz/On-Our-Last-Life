@@ -24,7 +24,7 @@ router.get('/', function(req,res,next) {
 // TEAM //
 //////////
 router.get('/team', function(req,res,next) {
-	db.query("SELECT fname,lname,username,facebookUrl,twitterUrl FROM users WHERE admin >= 1;", function(err, results, fields) {
+	db.query("SELECT fname,lname,username,facebook,twitter FROM users WHERE admin >= 2;", function(err, results, fields) {
 		res.render('team', {
 			page: 'team',
 			members: results

@@ -3,9 +3,8 @@
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.social-links > span {
-	margin-left: 12px;
-	margin-right: 12px;
+.social-links > * {
+	margin: 0px 12px;
 }
 
 .mdi-playstation:before {

@@ -9,7 +9,7 @@ $(function() {
 	$('.mdi-menu-down').click(function(e) {
 		var clicked = $(this);
 		var index = clicked.data('target-index');
-		var descriptionNode = $('p[data-description='+index+']');
+		var descriptionNode = $('[data-description='+index+']');
 		
 		if (clicked.hasClass('opened')) {
 			// remove 'opened' class

@@ -22,82 +22,37 @@
 				<img src="" alt="" class="avatar">
 				<span class="username"><%= member.username %></span>
 				<div class="social-links">
-				<% if (member.facebookUrl != null && member.facebookUrl != "") { %>
-						<a href="<%= member.facebookUrl %>">
-							<i class="fb mdi mdi-facebook-box"></i>
-						</a>
+				<% if (member.facebook != null && member.facebook != "") { %>
+						<!-- make sure to minify this or invisible spaces will appear -->
+						<a href="https://www.facebook.com/<%= member.facebook %>" target="#"><i class="fb mdi mdi-facebook-box"></i></a>
 				<% } %>
-				<% if (member.twitterUrl != null && member.twitterUrl != "") { %>
-						<a href="<%= member.twitterUrl %>">
-							<i class="twitter mdi mdi-twitter"></i>
-						</a>
-					</span>
+				<% if (member.twitter != null && member.twitter != "") { %>
+						<a href="https://www.twitter.com/<%= member.twitter %>" target="#"><i class="twitter mdi mdi-twitter"></i></a>
 				<% } %>
-					<!-- <span class="psn-alias mdi mdi-playstation">GorEjaKz</span> -->
-					<!-- <span class="xbox-alias mdi mdi-xbox">None</span> -->
+				<% if (member.psn != null && member.psn != "") { %>
+					<i class="psn-alias mdi mdi-playstation"><%= member.psn %></i>
+				<% } %>
+				<% if (member.gamertag != null && member.gamertag != "") { %>
+					<i class="xbox-alias mdi mdi-xbox"><%= member.gamertag %></i>
+				<% } %>
 				</div>
 			</div>
 			
 		<% }) %>
 
-			<div class="member">
-				<img src="" alt="" class="avatar">
-				<span class="username">EviLRaLpH1</span>
-				<div class="social-links">
-					<!-- <span class="fb mdi mdi-facebook-box">
-						<a href=""></a>
-					</span>
-					<span class="twitter mdi mdi-twitter">
-						<a href=""></a>
-					</span>
-					<span class="psn-alias mdi mdi-playstation">EvilRaLpH1</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span> -->
-				</div>
-			</div>
-
-			<div class="member">
-				<img src="" alt="" class="avatar">
-				<span class="username">Andrew</span>
-				<div class="social-links">
-					<!-- <span class="fb mdi mdi-facebook-box">
-						<a href=""></a>
-					</span>
-					<span class="twitter mdi mdi-twitter">
-						<a href=""></a>
-					</span>
-					<span class="psn-alias mdi mdi-playstation">Cobalt87</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span> -->
-				</div>
-			</div>
-
-			<div class="member">
-				<img src="" alt="" class="avatar">
-				<span class="username">Cobalt87</span>
-				<div class="social-links">
-					<!-- <span class="fb mdi mdi-facebook-box">
-						<a href=""></a>
-					</span>
-					<span class="twitter mdi mdi-twitter">
-						<a href=""></a>
-					</span>
-					<span class="psn-alias mdi mdi-playstation">Cobalt87</span>
-					<span class="xbox-alias mdi mdi-xbox">None</span> -->
-				</div>
-			</div>
+		</div>
 
 			<!-- <div class="member">
 				<img src="" alt="" class="avatar">
 				<span class="username"></span>
-				<div class="gamer-alias">
+				<div class="social-links">
 					<span class="psn-alias mdi mdi-playstation"></span>
 					<span class="xbox-alias mdi mdi-xbox"></span>
 				</div>
 			</div> -->
-		</div>
 
 
-
-	</div>
+	</div> <!-- end main -->
 
 
 	<% include partials/console_scripts %>

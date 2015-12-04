@@ -36,7 +36,23 @@
 					<option value="<%= series.series_id %>"><%= series.name %></option>
 					<% }) %>
 				</select>
+				<input type="text" id="ep-index" placeholder="Episode Index">
+				<label for="ep-index" class="warning">
+					<ul>
+						<li>Episode Index must be a number.</li>
+						<li>This is used to index videos in the correct order.</li>
+						<li>If empty, it will be defaulted as the latest episode in the specified series.</li>
+					</ul>
+				</label>
 				<input type="text" id="ep-num" placeholder="Episode #">
+				<label for="ep-index" class="warning">
+					<ul>
+						<li>Episode # can be any format or text.</li>
+						<li>This is used for display purposes.</li>
+						<li>If you enter "Bloopers", it will show as "Episode: Bloopers"</li>
+						<li>If empty, it will default to its episode index number</li>
+					</ul>
+				</label>
 				<input type="text" id="ep-title" class="mandatory-field" placeholder="* Episode Title">
 				<textarea id="ep-description" cols="30" rows="10" placeholder="Episode Description"></textarea>
 				<label for="external-link">Direct Link to video</label>

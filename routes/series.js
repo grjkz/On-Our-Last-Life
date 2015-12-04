@@ -20,7 +20,7 @@ router.get('/', function(req,res,next) {
 
 
 router.get('/:series_id', function(req,res,next) {
-	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = ? AND s.series_id = e.series_id;", req.params.series_id, function(err, results, fields) {
+	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ? ORDER BY e.ep_index;", req.params.series_id, function(err, results, fields) {
 		// get all episodes of specific series
 		res.render('show_series', {
 			page: 'show_series',
