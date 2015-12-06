@@ -1,20 +1,19 @@
-console.log('indexApp linked');
+console.log('indexApp.js linked');
 var App = angular.module('App',['ngRoute']);
 
-App.config(['$routeProvider', function($routeProvider) {
-	
+App.config(function($routeProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl: 'angular/views/home.html'
+			templateUrl: '/angular/views/home.html'
 		})
 		.when('/team', {
-			templateUrl: 'angular/views/team.html',
+			templateUrl: '/angular/views/team.html',
 			// controller: 'teamController',
 		})
 		.when('/faq', {
-			templateUrl: 'angular/views/faq.html'
+			templateUrl: '/angular/views/faq.html'
 		})
 		.otherwise({
 			redirectTo: '/'
 		})
-}]);
+});

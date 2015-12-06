@@ -1,15 +1,21 @@
 <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
-<% if (page === 'index') { %>
+<% if (page === 'faq') { %>
 	<script src="/vendor/velocity/velocity.min.js"></script>
-	<script src="/javascripts/index.js"></script>
 	<script src="/javascripts/faq.js"></script>
-	<script src="/javascripts/team.js"></script>
+<% } %>
+
+<% if (page === 'index') { %>
+	<script src="/javascripts/index.js"></script>
 <% } %>
 
 <% if (page === 'add_content') { %>
 	<script src="/vendor/velocity/velocity.min.js"></script>
 	<script src="/javascripts/add_content.js"></script>
+<% } %>
+
+<% if (page === 'team') { %>
+	<script src="/javascripts/team.js"></script>
 <% } %>
 
 <% if (page === 'series') { %>

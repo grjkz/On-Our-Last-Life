@@ -9,18 +9,9 @@
 	<% include partials/header %>
 
 	<div class="main">
-		
-		<div class="news">
-			<h1 class="header-label">
-				News
-			</h1>
-		</div>
-		
-		<div class="latest-video">
-			<%- last_uploaded.embed %>
-		</div>
-
+		<div ng-view></div>
 	</div>
+
 	
 
 	<% include partials/console_scripts %>

@@ -1,3 +1,4 @@
+console.log('faq.js linked')
 $(function() {
 
 	/**
