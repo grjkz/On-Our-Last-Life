@@ -1,0 +1,39 @@
+<h1 class="header-label">
+	Team Members
+</h1>
+<!-- 
+<% members.forEach(function(member) { %>
+
+<div class="team-members">
+	<div class="member">
+		<img src="" alt="" class="avatar">
+		<span class="username"><%= member.username %></span>
+		<div class="social-links">
+		<% if (member.facebook != null && member.facebook != "") { %>
+				make sure to minify this or invisible spaces will appear
+				<a href="https://www.facebook.com/<%= member.facebook %>" target="#"><i class="fb mdi mdi-facebook-box"></i></a>
+		<% } %>
+		<% if (member.twitter != null && member.twitter != "") { %>
+				<a href="https://www.twitter.com/<%= member.twitter %>" target="#"><i class="twitter mdi mdi-twitter"></i></a>
+		<% } %>
+		<% if (member.psn != null && member.psn != "") { %>
+			<i class="psn-alias mdi mdi-playstation"><%= member.psn %></i>
+		<% } %>
+		<% if (member.gamertag != null && member.gamertag != "") { %>
+			<i class="xbox-alias mdi mdi-xbox"><%= member.gamertag %></i>
+		<% } %>
+		</div>
+	</div>
+	
+<% }) %>
+
+</div>
+
+	<!-- <div class="member">
+		<img src="" alt="" class="avatar">
+		<span class="username"></span>
+		<div class="social-links">
+			<span class="psn-alias mdi mdi-playstation"></span>
+			<span class="xbox-alias mdi mdi-xbox"></span>
+		</div>
+	</div> -->

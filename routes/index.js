@@ -12,7 +12,7 @@ router.get('/', function(req,res,next) {
 
 	db.query("SELECT * FROM episodes ORDER BY episode_id DESC LIMIT 1;", function(err, result, fields) {
 		res.render('index', {
-			page: 'index', 
+			page: 'index',
 			last_uploaded:result[0]
 		});
 	});
