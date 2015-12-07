@@ -35,16 +35,16 @@ h2 {
 }
 
 /*
-For video descriptions
+For video details
  */
 h3 {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 400;
 	line-height: 24px;
 }
 
 /*
-For sub-text
+For subtle sub-text 
  */
 h5 {
 	font-size: 16px;
@@ -71,7 +71,7 @@ button {
 a:link,
 a:active,
 a:visited {
-	/*color: #000000;*/
+	/*color: inherit;*/
 }
 
 .main {

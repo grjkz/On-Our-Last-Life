@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="App">
 <head>
 	<meta charset="UTF-8">
+	<% include ../partials/console_styles %>
 	<title>ADMIN</title>
 </head>
 <body>
-	<div class="main">
-		ADMIN INDEX PAGE!!
+	
+	<% include partials/side_nav %>
+
+	<div class="main" ng-view>
+
 	</div>
+
+	<% include ../partials/console_scripts %>
 </body>
 </html>

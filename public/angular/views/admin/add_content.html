@@ -1,0 +1,52 @@
+<div id="global-message"></div>
+
+<div class="instructions">
+	<span style='color:#ff0000;'>*</span> denotes madatory field.
+</div>
+
+<div class="add-series card">
+	<label for="add-series-form">Add a New Series</label>
+	<form id="add-series-form">
+		<input type="text" id="series-name" class="mandatory-field db-unique" placeholder="* Series Name">
+		<textarea id="series-description" cols="30" rows="10" placeholder="Series Description"></textarea>
+		<button>Add Series</button>
+	</form>
+
+</div>
+
+
+<div class="add-episode card">
+	<label for="add-episode-form">Add a New Episode</label>
+	<form id="add-episode-form">
+		<select id="ep-series">
+			<% allSeries.forEach(function(series) { %>
+			<option value="<%= series.series_id %>"><%= series.name %></option>
+			<% }) %>
+		</select>
+		<input type="text" id="ep-index" placeholder="Episode Index">
+		<label for="ep-index" class="warning">
+			<ul>
+				<li>Episode Index must be a number.</li>
+				<li>This is used to index videos in the correct order.</li>
+				<li>If empty, it will be defaulted as the latest episode in the specified series.</li>
+			</ul>
+		</label>
+		<input type="text" id="ep-num" placeholder="Episode #">
+		<label for="ep-index" class="warning">
+			<ul>
+				<li>Episode # can be any format or text.</li>
+				<li>This is used for display purposes.</li>
+				<li>If you enter "Bloopers", it will show as "Episode: Bloopers"</li>
+				<li>If empty, it will default to its episode index number</li>
+			</ul>
+		</label>
+		<input type="text" id="ep-title" class="mandatory-field" placeholder="* Episode Title">
+		<textarea id="ep-description" cols="30" rows="10" placeholder="Episode Description"></textarea>
+		<label for="external-link">Direct Link to video</label>
+		<input type="text" id="ep-href" placeholder="https://youtu.be/T2Mq16uC2t4">
+		<label for="embeded-link">Embeded Link</label>
+		<input type="text" id="ep-embed" placeholder="<iframe width='640' height='480' src='https://www.youtube.com/embed/T2Mq16uC2t4' frameborder='0' allowfullscreen></iframe>">
+		<button>Add Episode</button>
+	</form>
+
+</div>

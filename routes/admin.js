@@ -10,8 +10,16 @@ var db = require('../db/sql.js');
 
 // show all admin controls
 router.get('/', function(req,res,next) {
-	res.render('admin/index');
+	res.render('admin/index', {
+		page: 'admin'
+	});
 });
+
+// router.get('*', function(req,res,next) {
+// 	res.render('admin/index', {
+// 		page: 'admin'
+// 	});
+// });
 
 
 // add new content
