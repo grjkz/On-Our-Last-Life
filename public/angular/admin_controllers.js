@@ -8,12 +8,7 @@ AppControllers.controller('homeCtrl', ['$scope', function($scope) {
 
 
 AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', function($scope, Series, Episode) {
-	$scope.series = Series.query(function(data) {
-		// fix empty <option> issue
-		$scope.seriesId = $scope.series[0].series_id;
-		debugger
-	});
-
+	$scope.series = Series.query();
 
 	// add new series
 	$scope.addSeries = function() {
@@ -21,15 +16,22 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 		newSeries.name = $scope.seriesName;
 		newSeries.description = $scope.seriesDescription;
 
-		// console.log(newSeries)
 		newSeries.$save(function(res) {
-			console.log(response)
+			console.log(res)
 			if (res.error) {
-				// error handler
+				// api's error handler
+				globalMessage(res.error);
 			} else {
-				// send global message
+				globalMessage($scope.seriesName + " has been added!");
+
+				var newId = res.insertId;
 				// push to series array? to make it update select>option
+				$scope.series.push({series_id: newId, name: $scope.seriesName, description: $scope.seriesDescription});
+				debugger
 			}
+		}, function(err) {
+			console.log(err);
+			globalMessage("Something went wrong! Try again later.");
 		});
 	};
 
@@ -37,20 +39,25 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 	$scope.addEpisode = function() {
 		var newEpisode = new Episode();
 
-		newEpisode.series_id = $scope.seriesId;
+		newEpisode.series_id = $scope.seriesObj.series_id;
 		newEpisode.ep_index = $scope.epIndex;
 		newEpisode.ep_num = $scope.epNum;
-		newEpisode.title = $scope.eptitle;
+		newEpisode.title = $scope.epTitle;
 		newEpisode.ep_description = $scope.epDescription;
 		newEpisode.href = $scope.epHref;
 		newEpisode.embeded = $scope.epEmbeded;
 
 		newEpisode.$save(function(res) {
+			console.log(res)
 			if (res.error) {
-				// error handler
+				// api's error handler
+				globalMessage(res.error);
 			} else {
-				// success message
+				globalMessage($scope.epTitle + " has been added!");
 			}
+		}, function(err) {
+			console.log(err);
+			globalMessage("Something went wrong! Try again later.");
 		});
 	};
 }]);

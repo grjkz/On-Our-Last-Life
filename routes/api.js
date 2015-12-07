@@ -60,21 +60,20 @@ router.post('/series', function(req,res,next) {
 	console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
 	console.log('add series requested');
 	console.log(req.body)
-	// db.query("INSERT INTO series SET ?", 
-	// 	{ 
-	// 		name: req.body.name, 
-	// 		series_description: req.body.description
-	// 	}, function(err, result) {
-
-	// 		if (err) {
-	// 			console.log(err.code)
-	// 			res.json({error: err.code});
-	// 		}
-	// 		else {
-	// 			console.log(result)
-	// 			res.json(result);
-	// 		}
-	// });
+	db.query("INSERT INTO series SET ?", 
+		{ 
+			name: req.body.name, 
+			series_description: req.body.description
+		}, function(err, result) {
+			if (err) {
+				console.log(err.code)
+				res.json({error: err.code});
+			}
+			else {
+				console.log(result)
+				res.json(result);
+			}
+	});
 });
 
 
@@ -108,7 +107,8 @@ router.post('/episodes', function(req,res,next) {
 	// if episodeIndex doesn't exist, find the current highest ep_index in its series
 	if (episodeIndex == null || episodeIndex == "" || episodeIndex == "NaN") {
 		db.query("SELECT max(ep_index) as maxIndex FROM episodes WHERE series_id = ?;", req.body.series_id, function(err,result,fields) {
-			console.log("highest index: " + result[0].maxIndex)
+			console.log(req.body)
+			console.log("highest index: " + result[0].maxIndex);
 			// this is to be the next episode index
 			var episodeIndex = result[0].maxIndex + 1;
 			
@@ -121,7 +121,7 @@ router.post('/episodes', function(req,res,next) {
 					ep_index: episodeIndex,
 					ep_num: episodeNumber,
 					title: req.body.title,
-					ep_description: req.body.description,
+					ep_description: req.body.ep_description,
 					href: req.body.href,
 					embed: req.body.embed
 				}, function(err, result) {

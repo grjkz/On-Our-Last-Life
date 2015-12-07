@@ -29,102 +29,102 @@ $(function() {
 	 });
 
 
-	/**
+	// /**
 	 
-	 * Series AJAX POST
+	//  * Series AJAX POST
 	 
-	 */
+	//  */
 
-	$('#add-series-form').submit(function() {
-		$('#add-series-form *').removeClass('error');
+	// $('#add-series-form').submit(function() {
+	// 	$('#add-series-form *').removeClass('error');
 
-		var series = {
-			name: $('#series-name').val().trim(),
-			description: $('#series-description').val().trim()
-		};
+	// 	var series = {
+	// 		name: $('#series-name').val().trim(),
+	// 		description: $('#series-description').val().trim()
+	// 	};
 
-		// do nothing if mandatory field is empty
-		if (!series.name) {
-			$('#series-name').addClass('error');
-			return false;
-		}
+	// 	// do nothing if mandatory field is empty
+	// 	if (!series.name) {
+	// 		$('#series-name').addClass('error');
+	// 		return false;
+	// 	}
 
-		// do nothing if exact series name already exists
-		if (checkDuplicateSeries(series.name)) {
-			globalMessage("This Series already exists!");
-			$('#series-name').addClass('error');
-			return false;
-		}
+	// 	// do nothing if exact series name already exists
+	// 	if (checkDuplicateSeries(series.name)) {
+	// 		globalMessage("This Series already exists!");
+	// 		$('#series-name').addClass('error');
+	// 		return false;
+	// 	}
 
-		$.ajax({
-			type: "POST",
-			url: "/api/series",
-			data: series,
-			success: function(data) {
-				if (data.error) {
-					globalMessage(data.error);
-					return false;
-				}
-				// give success feedback message
-				globalMessage(series.name + " Added!");
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "/api/series",
+	// 		data: series,
+	// 		success: function(data) {
+	// 			if (data.error) {
+	// 				globalMessage(data.error);
+	// 				return false;
+	// 			}
+	// 			// give success feedback message
+	// 			globalMessage(series.name + " Added!");
 
-				// append the new option to #ep-series
-				$('#ep-series').append('<option value='+ data.insertId +'>' + series.name + '</option>');
-			},
-			error: function() {
-				globalMessage("Something went wrong. Try again later");
-			}
-		});
+	// 			// append the new option to #ep-series
+	// 			$('#ep-series').append('<option value='+ data.insertId +'>' + series.name + '</option>');
+	// 		},
+	// 		error: function() {
+	// 			globalMessage("Something went wrong. Try again later");
+	// 		}
+	// 	});
 
-		return false;
-	});
+	// 	return false;
+	// });
 
 
-	/**
+	// /**
 	 
-	 * Episode AJAX POST
+	//  * Episode AJAX POST
 	 
-	 */
+	//  */
 
-	$('#add-episode-form').submit(function() {
-		// clear all errored fields
-		$('#add-episode-form *').removeClass('error');
+	// $('#add-episode-form').submit(function() {
+	// 	// clear all errored fields
+	// 	$('#add-episode-form *').removeClass('error');
 		
-		var episode = {
-			series_id: parseInt( $('#ep-series').val() ),
-			ep_index: parseInt( $('#ep-index').val().trim() ),
-			ep_num: $('#ep-num').val().trim(),
-			title: $('#ep-title').val().trim(),
-			description: $('#ep-description').val().trim(),
-			href: $('#ep-href').val().trim(),
-			embed: $('#ep-embed').val().trim()
-		};
+	// 	var episode = {
+	// 		series_id: parseInt( $('#ep-series').val() ),
+	// 		ep_index: parseInt( $('#ep-index').val().trim() ),
+	// 		ep_num: $('#ep-num').val().trim(),
+	// 		title: $('#ep-title').val().trim(),
+	// 		description: $('#ep-description').val().trim(),
+	// 		href: $('#ep-href').val().trim(),
+	// 		embed: $('#ep-embed').val().trim()
+	// 	};
 
-		// don't submit if title field is empty
-		if (!episode.title) {
-			$('#ep-title').addClass('error');
-			return false;
-		}
+	// 	// don't submit if title field is empty
+	// 	if (!episode.title) {
+	// 		$('#ep-title').addClass('error');
+	// 		return false;
+	// 	}
 
-		$.ajax({
-			type: "POST",
-			url: "/api/episodes",
-			data: episode,
-			success: function(data) {
-				if (data.error) {
-					globalMessage(data.error);
-					return false;
-				}
-				// give success feedback message
-				globalMessage(episode.title + " Added!");
-			},
-			error: function() {
-				globalMessage("Something went wrong. Try again later");
-			}
-		});
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "/api/episodes",
+	// 		data: episode,
+	// 		success: function(data) {
+	// 			if (data.error) {
+	// 				globalMessage(data.error);
+	// 				return false;
+	// 			}
+	// 			// give success feedback message
+	// 			globalMessage(episode.title + " Added!");
+	// 		},
+	// 		error: function() {
+	// 			globalMessage("Something went wrong. Try again later");
+	// 		}
+	// 	});
 
-		return false;
-	});
+	// 	return false;
+	// });
 
 
 
