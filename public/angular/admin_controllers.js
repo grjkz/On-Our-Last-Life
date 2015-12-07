@@ -27,7 +27,6 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 				var newId = res.insertId;
 				// push to series array? to make it update select>option
 				$scope.series.push({series_id: newId, name: $scope.seriesName, description: $scope.seriesDescription});
-				debugger
 			}
 		}, function(err) {
 			console.log(err);
