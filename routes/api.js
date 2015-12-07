@@ -37,7 +37,7 @@ router.put('/series/:series_id', function(req,res,next) {
 	console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 	console.log('put request requested')
 	console.log("SeriesID: "+ req.params.series_id)
-	console.log(req.body)
+	console.log(req)
 });
 
 
@@ -57,21 +57,24 @@ router.get('/series', function(req,res,next) {
 
 // add new series
 router.post('/series', function(req,res,next) {
-	db.query("INSERT INTO series SET ?", 
-		{ 
-			name: req.body.name, 
-			series_description: req.body.description
-		}, function(err, result) {
+	console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
+	console.log('add series requested');
+	console.log(req.body)
+	// db.query("INSERT INTO series SET ?", 
+	// 	{ 
+	// 		name: req.body.name, 
+	// 		series_description: req.body.description
+	// 	}, function(err, result) {
 
-			if (err) {
-				console.log(err.code)
-				res.json({error: err.code});
-			}
-			else {
-				console.log(result)
-				res.json(result);
-			}
-	});
+	// 		if (err) {
+	// 			console.log(err.code)
+	// 			res.json({error: err.code});
+	// 		}
+	// 		else {
+	// 			console.log(result)
+	// 			res.json(result);
+	// 		}
+	// });
 });
 
 

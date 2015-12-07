@@ -7,14 +7,59 @@ AppControllers.controller('homeCtrl', ['$scope', function($scope) {
 }]);
 
 
-AppControllers.controller('addcontentCtrl', ['$scope', function($scope) {
-	$scope.message = "add content page";
+AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', function($scope, Series, Episode) {
+	$scope.series = Series.query(function(data) {
+		// fix empty <option> issue
+		$scope.seriesId = $scope.series[0].series_id;
+		debugger
+	});
+
+
+	// add new series
+	$scope.addSeries = function() {
+		var newSeries = new Series();
+		newSeries.name = $scope.seriesName;
+		newSeries.description = $scope.seriesDescription;
+
+		// console.log(newSeries)
+		newSeries.$save(function(res) {
+			console.log(response)
+			if (res.error) {
+				// error handler
+			} else {
+				// send global message
+				// push to series array? to make it update select>option
+			}
+		});
+	};
+
+	// add new episode
+	$scope.addEpisode = function() {
+		var newEpisode = new Episode();
+
+		newEpisode.series_id = $scope.seriesId;
+		newEpisode.ep_index = $scope.epIndex;
+		newEpisode.ep_num = $scope.epNum;
+		newEpisode.title = $scope.eptitle;
+		newEpisode.ep_description = $scope.epDescription;
+		newEpisode.href = $scope.epHref;
+		newEpisode.embeded = $scope.epEmbeded;
+
+		newEpisode.$save(function(res) {
+			if (res.error) {
+				// error handler
+			} else {
+				// success message
+			}
+		});
+	};
 }]);
 
 
 AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Series) {
+	
 	$scope.series = Series.query();
-	$scope.editItem = new Series;
+	$scope.editItem = new Series();
 
 	// fills form with respective series data
 	$scope.fillForm = function(index) {
@@ -33,6 +78,6 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 		$scope.editItem.series_description = $scope.seriesDescription;
 		console.log($scope.editItem)
 
-		$scope.editItem.$update();
+		Series.update($scope.editItem);
 	};
 }]);

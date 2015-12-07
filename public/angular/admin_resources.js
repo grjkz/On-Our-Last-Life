@@ -8,3 +8,10 @@ AppServices.factory('Series', ['$resource', function($resource) {
 		{update: {method: "PUT"}
 	});
 }]);
+
+AppServices.factory('Episode', ['$resource', function($resource) {
+	return $resource('/api/episodes/:id', 
+		{id: '@episode_id'}, 
+		{update: {method: "PUT"}
+	});
+}]);
