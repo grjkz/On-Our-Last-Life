@@ -68,6 +68,10 @@ button {
 	padding: 5px;
 }
 
+.center {
+	text-align: center;
+}
+
 a:link,
 a:active,
 a:visited {

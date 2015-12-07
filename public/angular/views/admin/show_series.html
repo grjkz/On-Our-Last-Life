@@ -1,0 +1,31 @@
+<div id="series-view">
+	<h1>Series List</h1>
+			{{series}}	
+
+	<div class="series-controls">
+		<div class="series-wrapper">
+			<div class="series" ng-repeat="s in series">
+				<a href="#/series/{{s.series_id}}" class="name">{{s.name}}</a>
+				<div class="ep-count">Eps: {{s.episodes}}</div>
+				
+				<div class="actions">
+					<button class='edit-button' ng-click="fillForm($index)">Edit</button>
+					<button class='delete-button'>Delete</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="edit-menu">
+			<h3 class="center">Edit Menu:</h3>
+			<label for="series-name">Series Name:</label>
+			<input type="text" id="series-name" placeholder="Series Name" value="{{seriesName}}" ng-model="seriesName">
+			<label for="series-description">Description:</label>
+			<textarea id="series-description" rows="10" placeholder="Series Description" ng-model="seriesDescription">{{seriesDescription}}</textarea>
+			<button class="update-button" ng-click="update()">Update</button>
+		</div>
+	</div>
+
+	<div style="height:2000px"></div>
+	
+</div>
+

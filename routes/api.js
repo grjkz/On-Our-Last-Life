@@ -22,14 +22,38 @@ router.get('/nav/series', function(req,res,next) {
 ////////////
 // SERIES //
 ////////////
-// last uploaded video
-router.get('/series/recent', function(req,res,next) {
 
+
+// return last uploaded video
+router.get('/series/recent', function(req,res,next) {
 	db.query("SELECT * FROM series;", function(err, result, fields) {
 		res.json(result[0]);
 	});
-
 });
+
+
+// update a series
+router.put('/series/:series_id', function(req,res,next) {
+	console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+	console.log('put request requested')
+	console.log("SeriesID: "+ req.params.series_id)
+	console.log(req.body)
+});
+
+
+// delete a series
+router.delete('/series/:series_id', function(req,res,next) {
+	console.log('delete request requested')
+});
+
+
+// show all series with its episode count in abc order
+router.get('/series', function(req,res,next) {
+	db.query("SELECT s.*, count(e.episode_id) as episodes FROM series as s LEFT JOIN episodes as e ON s.series_id = e.series_id GROUP BY s.series_id ORDER BY name;", function(err, results, fields) {
+		res.json(results);
+	});
+});
+
 
 // add new series
 router.post('/series', function(req,res,next) {
@@ -54,13 +78,21 @@ router.post('/series', function(req,res,next) {
 //////////////
 // EPISODES //
 //////////////
+
+
+// show all episodes plus the series's details
+router.get('/series/:series_id', function(req,res,next) {
+	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ?", req,params.series_id, function(err, results, fields) {
+		res.json(results);
+	});
+});
+
+
 // get all episodes
 router.get('/episodes', function(req,res,next) {
-
 	db.query("SELECT * FROM episodes;", function(err, result, fields) {
 		res.render('index', {last_uploaded:result[0]});
 	});
-
 });
 
 // add new episode

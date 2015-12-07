@@ -64,3 +64,68 @@
 .warning ul {
 	padding-left: 16px;
 }
+
+/**
+ 
+ * SERIES VIEW
+ 
+ */
+
+.series-controls {
+	display: flex;
+}
+
+.series-wrapper,
+.edit-menu {
+	width: 50%;
+	padding: 12px;
+}
+
+.series {
+	overflow: auto;
+	margin: 18px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.name,
+.edit-button {
+	float: left;
+}
+
+.ep-count,
+.delete-button {
+	float: right;
+}
+
+.actions {
+	clear: both;
+	overflow: auto;
+	padding: 12px 0;
+}
+
+.delete-button {
+	background-color: #FF0000;
+	color: white;
+}
+
+.edit-menu {
+	/*position: fixed;*/
+}
+
+.edit-menu > * {
+	display: block;
+	width: 100%;
+}
+
+.edit-menu > label {
+	margin: 24px 0px 8px;
+}
+
+.update-button {
+	margin-top: 12px;
+	background-color: #;
+}
+
+/*textarea {
+	width: 100%;
+}*/

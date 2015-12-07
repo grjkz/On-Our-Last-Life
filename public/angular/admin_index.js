@@ -10,11 +10,13 @@ App.config(['$routeProvider', function($routeProvider) {
 		})
 		
 		.when('/addcontent', {
-			templateUrl: 'angular/views/admin/add_content.html'
+			templateUrl: 'angular/views/admin/add_content.html',
+			controller: 'addcontentCtrl'
 		})
 		
 		.when('/series', {
-			templateUrl: 'angular/views/admin/show_series.html'
+			templateUrl: 'angular/views/admin/show_series.html',
+			controller: 'seriesCtrl'
 		})
 		
 		.when('/series/:id', {
