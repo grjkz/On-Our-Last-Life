@@ -44,13 +44,13 @@ router.put('/series/:series_id', function(req,res,next) {
 		series_description: req.body.series_description
 	};
 
-	db.query("UPDATE series SET ? WHERE series_id = ?", [series, series_id], function(err, result, fields) {
+	db.query("UPDATE series SET ? WHERE series_id = ? LIMIT 1", [series, series_id], function(err, result, fields) {
 		if (err) {
 			console.log(err)
 			res.json({error: err.code});
 		} else {
 			// need to return changed row for angular to update itself properly
-			db.query("SELET * FROM series WHERE series_id = ?", series_id, function(err,result,fields) {
+			db.query("SELET * FROM series WHERE series_id = ? LIMIT 1", series_id, function(err,result,fields) {
 				res.json(result);
 			});
 		}
