@@ -20,7 +20,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			console.log(res)
 			if (res.error) {
 				// api's error handler
-				globalMessage(res.error);
+				globalMessage("Error: " + res.error);
 			} else {
 				globalMessage($scope.seriesName + " has been added!");
 
@@ -50,7 +50,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			console.log(res)
 			if (res.error) {
 				// api's error handler
-				globalMessage(res.error);
+				globalMessage("Error: " + res.error);
 			} else {
 				globalMessage($scope.epTitle + " has been added!");
 			}
@@ -78,12 +78,27 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 	// updates the db when 'update-button' clicked
 	$scope.update = function() {
 		// if no series has been clicked on, do nothing
-		if (!$scope.editItem.series_id) { console.log('Pick something to edit first!'); return false; }
+		if (!$scope.editItem.series_id) {
+			console.log('Pick something to edit first!');
+			globalMessage("Pick something to edit first!");
+			return false;
+		}
 		
 		$scope.editItem.name = $scope.seriesName;
 		$scope.editItem.series_description = $scope.seriesDescription;
-		console.log($scope.editItem)
+		// console.log($scope.editItem)
 
-		Series.update($scope.editItem);
+		$scope.editItem.$update(function(res) {
+			if (res.error) {
+				console.log(res.error)
+				globalMessage("Error: " + res.err);
+			} else {
+				globalMessage($scope.editItem.name + " updated!");
+			}
+			console.log(res)
+		}, function(res) {
+			// send error
+			globalMessage("Something went wrong! Try again later.");
+		});
 	};
 }]);

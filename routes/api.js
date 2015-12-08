@@ -35,9 +35,26 @@ router.get('/series/recent', function(req,res,next) {
 // update a series
 router.put('/series/:series_id', function(req,res,next) {
 	console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
-	console.log('put request requested')
-	console.log("SeriesID: "+ req.params.series_id)
-	console.log(req)
+	console.log('update requested')
+	// console.log("SeriesID: "+ req.params.series_id)
+	// console.log(req.body)
+	var series_id = req.body.series_id;
+	var series = {
+		name: req.body.name,
+		series_description: req.body.series_description
+	};
+
+	db.query("UPDATE series SET ? WHERE series_id = ?", [series, series_id], function(err, result, fields) {
+		if (err) {
+			console.log(err)
+			res.json({error: err.code});
+		} else {
+			// need to return changed row for angular to update itself properly
+			db.query("SELET * FROM series WHERE series_id = ?", series_id, function(err,result,fields) {
+				res.json(result);
+			});
+		}
+	});
 });
 
 
@@ -59,14 +76,14 @@ router.get('/series', function(req,res,next) {
 router.post('/series', function(req,res,next) {
 	console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
 	console.log('add series requested');
-	console.log(req.body)
+	// console.log(req.body)
 	db.query("INSERT INTO series SET ?", 
 		{ 
 			name: req.body.name, 
 			series_description: req.body.description
 		}, function(err, result) {
 			if (err) {
-				console.log(err.code)
+				console.log(err)
 				res.json({error: err.code});
 			}
 			else {
