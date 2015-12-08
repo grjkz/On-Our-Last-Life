@@ -32,6 +32,14 @@ router.get('/series/recent', function(req,res,next) {
 });
 
 
+// show all series with its episode count in abc order
+router.get('/series', function(req,res,next) {
+	db.query("SELECT s.*, count(e.episode_id) as episodes FROM series as s LEFT JOIN episodes as e ON s.series_id = e.series_id GROUP BY s.series_id ORDER BY name;", function(err, results, fields) {
+		res.json(results);
+	});
+});
+
+
 // update a series
 router.put('/series/:series_id', function(req,res,next) {
 	console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
@@ -44,13 +52,13 @@ router.put('/series/:series_id', function(req,res,next) {
 		series_description: req.body.series_description
 	};
 
-	db.query("UPDATE series SET ? WHERE series_id = ? LIMIT 1", [series, series_id], function(err, result, fields) {
+	db.query("UPDATE series SET ? WHERE series_id = ? LIMIT 1;", [series, series_id], function(err, result, fields) {
 		if (err) {
 			console.log(err)
 			res.json({error: err.code});
 		} else {
 			// need to return changed row for angular to update itself properly
-			db.query("SELET * FROM series WHERE series_id = ? LIMIT 1", series_id, function(err,result,fields) {
+			db.query("SELET * FROM series WHERE series_id = ? LIMIT 1;", series_id, function(err,result,fields) {
 				res.json(result);
 			});
 		}
@@ -61,13 +69,13 @@ router.put('/series/:series_id', function(req,res,next) {
 // delete a series
 router.delete('/series/:series_id', function(req,res,next) {
 	console.log('delete request requested')
-});
-
-
-// show all series with its episode count in abc order
-router.get('/series', function(req,res,next) {
-	db.query("SELECT s.*, count(e.episode_id) as episodes FROM series as s LEFT JOIN episodes as e ON s.series_id = e.series_id GROUP BY s.series_id ORDER BY name;", function(err, results, fields) {
-		res.json(results);
+	db.query("DELETE FROM series WHERE series_id = ? LIMIT 1;", req.params.series_id, function(err,result,fields) {
+		if (err) {
+			console.log(err);
+			res.json({error: err.code});
+		} else {
+			res.json(result);
+		}
 	});
 });
 

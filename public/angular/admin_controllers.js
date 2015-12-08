@@ -91,7 +91,7 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 		$scope.editItem.$update(function(res) {
 			if (res.error) {
 				console.log(res.error)
-				globalMessage("Error: " + res.err);
+				globalMessage("Error: " + res.error);
 			} else {
 				globalMessage($scope.editItem.name + " updated!");
 			}
@@ -100,5 +100,27 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 			// send error
 			globalMessage("Something went wrong! Try again later.");
 		});
+	};
+
+	// delete a series
+	$scope.delete = function(index) {
+		var deleteItem = $scope.series[index];
+		var seriesName = angular.copy(deleteItem.name);
+		var confirmed = confirm("Delete: \"" + seriesName + "\" ?\n"
+				+ "This will also delete all associated episodes!");
+		if (confirmed) {
+			deleteItem.$delete(function(res) {
+				if (res.error) {
+					console.log(res.error)
+					globalMessage("Error: " + res.error);
+				} else {
+					$scope.series.splice(index,1); // removes deleted object so the DOM element vanishes
+					globalMessage(seriesName + " deleted!!!");
+				}
+			}, function(res) {
+				console.log(res)
+				globalMessage("Something went wrong! Try again later.");
+			});
+		}
 	};
 }]);
