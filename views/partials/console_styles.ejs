@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="/vendor/normalize-css/normalize.css">
 <link rel="stylesheet" href="/vendor/mdi/css/materialdesignicons.css">
 <link rel="stylesheet" href="/stylesheets/general.css">
-<link rel="stylesheet" href="/stylesheets/header.css">
+
+<% if (page != 'admin') { %>
+	<link rel="stylesheet" href="/stylesheets/header.css">
+<% } %>
 
 <% if (page === 'index') { %>
 	<link rel="stylesheet" href="/stylesheets/index.css">

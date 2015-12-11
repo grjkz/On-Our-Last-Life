@@ -32,6 +32,13 @@ router.get('/series/recent', function(req,res,next) {
 });
 
 
+// grab series info and all episodes
+router.get('/series/:series_id', function(req,res,next) {
+	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ?", req,params.series_id, function(err, results, fields) {
+		res.json(results);
+	});
+});
+
 // show all series with its episode count in abc order
 router.get('/series', function(req,res,next) {
 	db.query("SELECT s.*, count(e.episode_id) as episodes FROM series as s LEFT JOIN episodes as e ON s.series_id = e.series_id GROUP BY s.series_id ORDER BY name;", function(err, results, fields) {
@@ -66,14 +73,15 @@ router.put('/series/:series_id', function(req,res,next) {
 });
 
 
-// delete a series
+// delete a series and associated episodes
 router.delete('/series/:series_id', function(req,res,next) {
 	console.log('delete request requested')
-	db.query("DELETE FROM series WHERE series_id = ? LIMIT 1;", req.params.series_id, function(err,result,fields) {
+	db.query("DELETE FROM series WHERE series_id = ?;", req.params.series_id, function(err,result,fields) {
 		if (err) {
 			console.log(err);
 			res.json({error: err.code});
 		} else {
+			console.log(result)
 			res.json(result);
 		}
 	});
@@ -107,20 +115,25 @@ router.post('/series', function(req,res,next) {
 //////////////
 
 
-// show all episodes plus the series's details
-router.get('/series/:series_id', function(req,res,next) {
-	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ?", req,params.series_id, function(err, results, fields) {
+// get all episodes and its series info ordered by ep_index
+router.get('/episodes', function(req,res,next) {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	console.log('get request to /episodes')
+	// db.query("SELECT * FROM episodes as e, series as s WHERE e.series_id = s.series_id ORDER BY e.ep_index;", function(err, results, fields) {
+		// res.json(results);
+	// });
+});
+
+
+// get one series and all its episodes ordered by ep_index
+router.get('/series/:series_id/episodes', function(req,res,next) {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	console.log('get request to /episodes/:series_id')
+	db.query("SELECT * FROM episodes as e, series as s WHERE e.series_id = s.series_id AND e.series_id = ? ORDER BY e.ep_index;", req.params.series_id, function(err,results,fields) {
 		res.json(results);
 	});
 });
 
-
-// get all episodes
-router.get('/episodes', function(req,res,next) {
-	db.query("SELECT * FROM episodes;", function(err, result, fields) {
-		res.render('index', {last_uploaded:result[0]});
-	});
-});
 
 // add new episode
 router.post('/episodes', function(req,res,next) {

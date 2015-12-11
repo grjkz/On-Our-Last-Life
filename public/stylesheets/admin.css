@@ -9,6 +9,15 @@
  
  */
 
+.main {
+	width: 100%;
+}
+
+.view-header {
+	text-align: center;
+	margin-bottom: 32px;
+}
+
 .error {
 	box-shadow: 0 0 4px 2px red !important;
 }
@@ -71,14 +80,20 @@
  
  */
 
-.series-controls {
+.series-controls,
+.episodes-controls {
 	display: flex;
 }
 
 .series-wrapper,
-.edit-menu {
+.edit-menu,
+.episodes-wrapper {
 	width: 50%;
-	padding: 12px;
+	margin: 0px 12px;
+	padding: 0px 12px;
+	box-sizing: border-box;
+	background-color: #CCCCCC;
+	box-shadow: 1px 2px 10px rgba(0,0,0,0.4);
 }
 
 .series {
@@ -110,6 +125,7 @@
 
 .edit-menu {
 	/*position: fixed;*/
+	align-self: flex-start;
 }
 
 .edit-menu > * {
@@ -122,7 +138,7 @@
 }
 
 .update-button {
-	margin-top: 12px;
+	margin: 12px 0px;
 	background-color: #;
 }
 

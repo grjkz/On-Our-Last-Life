@@ -22,7 +22,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 				// api's error handler
 				globalMessage("Error: " + res.error);
 			} else {
-				globalMessage($scope.seriesName + " has been added!");
+				globalMessage('"' + $scope.seriesName + '" has been added!');
 
 				var newId = res.insertId;
 				// push to series array? to make it update select>option
@@ -52,7 +52,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 				// api's error handler
 				globalMessage("Error: " + res.error);
 			} else {
-				globalMessage($scope.epTitle + " has been added!");
+				globalMessage('"' + $scope.epTitle + '" has been added!');
 			}
 		}, function(err) {
 			console.log(err);
@@ -62,7 +62,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 }]);
 
 
-AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Series) {
+AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Series) {
 	
 	$scope.series = Series.query();
 	$scope.editItem = new Series();
@@ -93,7 +93,7 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 				console.log(res.error)
 				globalMessage("Error: " + res.error);
 			} else {
-				globalMessage($scope.editItem.name + " updated!");
+				globalMessage('"' + $scope.editItem.name + '" updated!');
 			}
 			console.log(res)
 		}, function(res) {
@@ -114,8 +114,8 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 					console.log(res.error)
 					globalMessage("Error: " + res.error);
 				} else {
-					$scope.series.splice(index,1); // removes deleted object so the DOM element vanishes
-					globalMessage(seriesName + " deleted!!!");
+					$scope.series.splice(index,1); // removes object so the DOM element vanishes
+					globalMessage('"' + seriesName + '" DELETED!!!');
 				}
 			}, function(res) {
 				console.log(res)
@@ -123,4 +123,25 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series',function($scope, Ser
 			});
 		}
 	};
+}]);
+
+
+AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', function($scope, $routeParams, Episode) {
+	$scope.episodes = Episode.get({series_id: $routeParams.id});
+	$scope.editItem = new Episode();
+
+	// fills form with respective series data
+	$scope.fillForm = function(index) {
+		$scope.editItem = $scope.episodes[index];
+		// console.log(editItem)
+		$scope.epIndex = $scope.editItem.ep_index;
+		$scope.epNum = $scope.editItem.ep_num;
+		$scope.epTitle = $scope.editItem.title;
+		$scope.epDescription = $scope.editItem.ep_description;
+		$scope.epHref = $scope.editItem.href;
+		$scope.epEmbed = $scope.editItem.embed;
+	};
+
+
+
 }]);

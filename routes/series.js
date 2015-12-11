@@ -38,7 +38,7 @@ router.get('/:series_id/episode/:ep_id', function(req,res,next) {
 		// console.log(episode[0].ep_index)
 
 		var epIndex = episode[0].ep_index;
-		// get previous and next episodes
+		// get previous and next episode id
 		db.query("Select series_id,ep_index,ep_num,title FROM episodes "+
 			"WHERE ("+
 				"ep_index = IFNULL((SELECT min(ep_index) FROM episodes WHERE ep_index > ?),0) "+

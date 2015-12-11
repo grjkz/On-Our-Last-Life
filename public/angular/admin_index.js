@@ -20,7 +20,8 @@ App.config(['$routeProvider', function($routeProvider) {
 		})
 		
 		.when('/series/:id', {
-			templateUrl: 'angular/views/admin/show_episodes.html'
+			templateUrl: 'angular/views/admin/show_episodes.html',
+			controller: 'episodesCtrl'
 		})
 		
 		.otherwise({
