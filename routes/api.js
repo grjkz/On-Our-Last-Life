@@ -205,6 +205,45 @@ router.post('/episodes', function(req,res,next) {
 });
 
 
+// update episode data
+router.put('/series/:series_id/episodes/:episode_id', function(req,res,next) {
+	// console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+	// console.log('update episode requested')
+	var episodeId = req.params.episode_id;
+	var episode = {
+		ep_index: req.body.ep_index,
+		ep_num: req.body.ep_num,
+		title: req.body.title,
+		ep_description: req.body.ep_description,
+		href: req.body.href,
+		embed: req.body.embed
+	};
+	db.query("UPDATE episodes SET ? WHERE episodes.episode_id = ? LIMIT 1;", [episode, episodeId], function(err, result, fields) {
+		if (err) {
+			console.log(err)
+			res.json({error: err.code});
+		} else {
+			db.query("SELECT * FROM episodes as e, series as s WHERE e.series_id = s.series_id AND e.episode_id = ? LIMIT 1;", episodeId, function(err,result,fields) {
+				res.json(result[0]);
+			});
+		}
+	});
+});
+
+
+// delete episode
+router.delete('/series/:series_id/episodes/:episode_id', function(req,res,next) {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	console.log('delete requested')
+	db.query("DELETE FROM episodes where episode_id = ?", req.params.episode_id, function(err,result,fields) {
+		if (err) {
+			console.log(err)
+			res.json({error: err.code});
+		} else {
+			res.json(result)
+		}
+	});
+});
 
 
 module.exports = router;

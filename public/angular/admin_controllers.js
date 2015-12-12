@@ -142,6 +142,34 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 		$scope.epEmbed = $scope.editItem.embed;
 	};
 
+	$scope.update = function() {
+		// if no series has been clicked on, do nothing
+		if (!$scope.editItem.episode_id) {
+			console.log('Pick something to edit first!');
+			globalMessage("Pick something to edit first!");
+			return false;
+		}
+		
+		$scope.editItem.ep_index = $scope.epIndex;
+		$scope.editItem.ep_num = $scope.epNum;
+		$scope.editItem.title = $scope.epTitle;
+		$scope.editItem.ep_description = $scope.epDescription;
+		$scope.editItem.href = $scope.epHref;
+		$scope.editItem.embed = $scope.epEmbed;
+
+		$scope.editItem.$update(function(res) {
+			if (res.error) {
+				console.log(res.error)
+				globalMessage("Error: " + res.error);
+			} else {
+				globalMessage('"' + $scope.editItem.name + '" updated!');
+			}
+			console.log(res)
+		}, function(res) {
+			// send error
+			globalMessage("Something went wrong! Try again later.");
+		});
+	};
 
 
 }]);

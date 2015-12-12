@@ -10,7 +10,7 @@
 		<div class="episodes-wrapper">
 			<div class="episode" ng-repeat="e in episodes">
 				<div class="episode-title">{{e.title}}</div>
-				<div class="episode-index">Ep #: {{e.ep_index}}</div>
+				<h5 class="episode-description">{{e.ep_description}}</h5>
 				
 				<div class="actions">
 					<button class='edit-button' ng-click="fillForm($index)">Edit</button>
@@ -22,18 +22,22 @@
 		<div class="edit-menu">
 			<h3 class="center">Edit Menu:</h3>
 			
+			<label for="ep-index">Index Number:</label>
 			<input type="text" id="ep-index" placeholder="Episode Index" value="{{epIndex}}" ng-model="epIndex">
 			
+			<label for="ep-num">Episode Number</label>
 			<input type="text" id="ep-num" placeholder="Episode #" value="{{epNum}}" ng-model="epNum">
 			
-			<label for="ep-title">Episode Title:</label>
+			<label for="ep-title">Title:</label>
 			<input type="text" id="ep-title" placeholder="Episode Name" value="{{epTitle}}" ng-model="epTitle">
 			
 			<label for="ep-description">Description:</label>
 			<textarea id="ep-description" rows="10" placeholder="Series Description" ng-model="epDescription">{{epDescription}}</textarea>
 			
+			<label for="ep-href">Direct link to video:</label>
 			<input type="text" id="ep-href" placeholder="Direct Link to Video" value="{{epHref}}" ng-model="epHref">
 
+			<label for="ep-embed">Embeded Link:</label>
 			<input type="text" id="ep-embed" placeholder="Embeded Link for video" value="{{epEmbed}}" ng-model="epEmbed">
 
 			<button class="update-button" ng-click="update()">Update</button>
