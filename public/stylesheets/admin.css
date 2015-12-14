@@ -134,6 +134,13 @@
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
+/*
+Hacky way to show a message when there is no element created from ng-repeat (empty data)
+ */
+.episode + .no-episode {
+	display: none;
+}
+
 .name,
 .edit-button {
 	float: left;

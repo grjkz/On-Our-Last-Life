@@ -7,6 +7,7 @@
 
 	<div class="episodes-controls">
 		<div class="episodes-wrapper">
+			
 			<div class="episode" ng-repeat="e in episodes">
 				<div class="episode-title">{{e.title}}</div>
 				<h5 class="episode-description">{{e.ep_description}}</h5>
@@ -16,6 +17,11 @@
 					<button class='delete-button' ng-click="delete($index)">Delete</button>
 				</div>
 			</div>
+			
+			<div class="no-episode">
+				<div class="episode-title">No episodes...</div>	
+			</div>
+
 		</div>
 
 		<div class="edit-menu">
