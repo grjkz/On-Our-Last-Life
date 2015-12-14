@@ -5,22 +5,22 @@
 		<h3>Site Overview</h3>
 		
 		<div class="stats">
-			<label for="series-count">Content amount:</label>
-			<table name="series-count">
+			<label for="meta-table">Overall data amount:</label>
+			<table name="meta-table" class="meta-data">
 				<tr>
-					<th>Series</th>
-					<th>Episodes</th>
+					<th>Category</th>
+					<th>Count</th>
 				</tr>
-				<tr> <!-- ng-repeat -->
-					<td>{{category}}</td>
-					<td>{{count}}</td>
+				<tr ng-repeat="x in metaData"> <!-- ng-repeat -->
+					<td class="capitalize">{{x.category}}</td>
+					<td>{{x.count}}</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>Total: </td>
-				</tr>
+				</tr> -->
 			</table>
 
-			<label for="meta-count"></label>
+			<!-- <label for="meta-count"></label>
 			<table name="meta-count">
 				<tr>
 					<th>Category</th>
@@ -38,7 +38,7 @@
 					<td>Comments</td>
 					<td>{{count}}</td>
 				</tr>
-			</table>
+			</table> -->
 		</div>
 	</div>
 

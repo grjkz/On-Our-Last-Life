@@ -2,8 +2,9 @@ console.log('admin_controllers.js linked');
 
 var AppControllers = angular.module('appControllers', []);
 
-AppControllers.controller('homeCtrl', ['$scope', function($scope) {
-	$scope.message = "home page";
+AppControllers.controller('homeCtrl', ['$scope', 'Summary', function($scope, Summary) {
+	$scope.metaData = Summary.query();
+	
 }]);
 
 
@@ -59,7 +60,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			globalMessage("Something went wrong! Try again later.");
 		});
 	};
-}]);
+}]); // END addcontentCtrl
 
 
 AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Series) {
@@ -123,14 +124,14 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Se
 			});
 		}
 	};
-}]);
+}]); // END seriesCtrl
 
 
 AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', function($scope, $routeParams, Episode) {
 	$scope.episodes = Episode.get({series_id: $routeParams.id});
 	$scope.editItem = new Episode();
 
-	// fills form with respective series data
+	// fills form with respective episode data
 	$scope.fillForm = function(index) {
 		$scope.editItem = $scope.episodes[index];
 		// console.log(editItem)
@@ -143,7 +144,7 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 	};
 
 	$scope.update = function() {
-		// if no series has been clicked on, do nothing
+		// if no episode has been clicked on, do nothing
 		if (!$scope.editItem.episode_id) {
 			console.log('Pick something to edit first!');
 			globalMessage("Pick something to edit first!");
@@ -171,5 +172,25 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 		});
 	};
 
+	$scope.delete = function(index) {
+		var deleteItem = $scope.episodes[index];
+		var episodeTitle = angular.copy(deleteItem.title);
+		var confirmed = confirm('Delete: \"' + episodeTitle + '"?');
+		if (confirmed) {
+			deleteItem.$delete(function(res) {
+				if (res.error) {
+					console.log(res.error)
+					globalMessage("Error: " + res.error);
+				} else {
+					$scope.episodes.splice(index,1); // removes object so the DOM element vanishes
+					globalMessage('"' + episodeTitle + '" DELETED!!!');
+				}
+			}, function(res) {
+				console.log(res)
+				globalMessage("Something went wrong! Try again later.");
+			});
+		}
+	};
 
-}]);
+
+}]); // END episodesCtrl

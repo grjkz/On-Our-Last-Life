@@ -2,6 +2,11 @@ console.log('admin_resources.js linked');
 
 var AppServices = angular.module('appServices', ['ngResource']);
 
+// gets the meta-data summary of the website
+AppServices.factory('Summary', ['$resource', function($resource) {
+	return $resource('/api/datasummary');
+}]);
+
 AppServices.factory('Series', ['$resource', function($resource) {
 	return $resource('/api/series/:id', 
 		{id: '@series_id'}, 

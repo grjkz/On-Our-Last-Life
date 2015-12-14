@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db/sql.js');
+var db = require('../config/sql.js');
 
 
 //////////
@@ -8,9 +8,25 @@ var db = require('../db/sql.js');
 //////////
 
 
+//////////////
+/// GENERAL //
+//////////////
+
+
+router.get('/datasummary', function(req,res,next) {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	console.log('metaData requested')
+	db.query("SELECT TABLE_NAME as category, TABLE_ROWS as count FROM `information_schema`.`tables` WHERE `table_schema` = 'last_life';", function(err, results, fields) {
+		res.json(results);
+	});
+});
+
+
 ////////////
 // NAVBAR //
 ////////////
+
+
 router.get('/nav/series', function(req,res,next) {
 	// get all series where episodes exists
 	db.query("SELECT series.series_id, series.name FROM series, episodes WHERE series.series_id = episodes.series_id GROUP BY series.series_id ORDER BY series.name;", function(err, results, fields) {
@@ -136,7 +152,7 @@ router.get('/series/:series_id/episodes', function(req,res,next) {
 
 
 // add new episode
-router.post('/episodes', function(req,res,next) {
+router.post('/series/:series_id/episodes', function(req,res,next) {
 	// check for index number
 	// check for episode number
 	var episodeIndex = req.body.ep_index;

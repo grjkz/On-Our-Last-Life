@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db/sql.js');
+var db = require('../config/sql.js');
+var PassportConfig = require('../config/passport.js');
+var passport = require('passport');
 
+PassportConfig(passport);
 
 ///////////
 // ADMIN //
@@ -9,7 +12,7 @@ var db = require('../db/sql.js');
 
 
 // show all admin controls
-router.get('/', function(req,res,next) {
+router.get('/', checkAuth, function(req,res,next) {
 	res.render('admin/index', {
 		page: 'admin'
 	});
@@ -54,5 +57,35 @@ router.get('/series/:series_id', function(req,res,next) {
 		});
 	});
 });
+
+
+// login
+router.get('/login', function(req,res,next) {
+	res.render('admin/admin_login', {loginMessage: req.flash('loginMessage')});
+});
+
+// admin login
+router.post('/login',
+	passport.authenticate('local-admin-login',
+		{
+			successRedirect: '/admin',
+			failureRedirect: '/admin/login',
+			falureFlash: false
+		}
+		), function(req,res,next) {
+	console.log(req.body)
+	res.json({body: req.body})
+});
+
+
+function checkAuth(req, res, next) {
+  if (!req.session.user_id) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
+
+
 
 module.exports = router;

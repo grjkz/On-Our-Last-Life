@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var flash = require('connect-flash');
 var path = require('path');
 var ejs = require('ejs');
 // var mysql = require('mysql');
@@ -7,10 +8,20 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 // var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var passport = require('passport');
 
 
 app.use(cookieParser());
 app.use(bodyParser());
+app.use(flash());
+
+app.use(session({
+	secret: 'nyan',
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 ///////////////////////
