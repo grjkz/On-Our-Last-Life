@@ -6,13 +6,13 @@
 	<title><%= episodes[0].name %></title>
 </head>
 <body>
-	
+	<div class="page-wrapper">
 	<% include partials/header %>
 
-	<div class="main">
+	<div class="main has-footer">
 		
 		<h1 class="view-header">
-			Series
+			<%= episodes[0].name %>
 		</h1>
 		
 		<% episodes.forEach(function(episode) { %>
@@ -26,8 +26,10 @@
 		</div>
 		<% }) %>
 
-	</div>
+	</div> <!-- end main -->
 
+	<% include partials/footer %>
+	</div> <!-- end page-wrapper -->
 
 	<% include partials/console_scripts %>
 </body>

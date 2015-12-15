@@ -6,18 +6,19 @@
 	<title>Team</title>
 </head>
 <body>
-	
+	<div class="page-wrapper">
 	<% include partials/header %>
 
-	<div class="main">
+	<div class="main has-footer">
 		
 		<h1 class="header-label">
 			Team Members
 		</h1>
 
-		<% members.forEach(function(member) { %>
-		
 		<div class="team-members">
+		
+			<% members.forEach(function(member) { %>
+		
 			<div class="member">
 				<img src="" alt="" class="avatar">
 				<span class="username"><%= member.username %></span>
@@ -51,9 +52,10 @@
 				</div>
 			</div> -->
 
-
 	</div> <!-- end main -->
-
+	
+	<% include partials/footer %>
+	</div> <!-- end page-wrapper -->
 
 	<% include partials/console_scripts %>
 </body>

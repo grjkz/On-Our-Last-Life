@@ -6,9 +6,10 @@
 	<title>On Our Last Life</title>
 </head>
 <body>
+	<div class="page-wrapper">
 	<% include partials/header %>
 
-	<div class="main">
+	<div class="main has-footer">
 		
 		<div class="latest-video">
 			<h1 class="header-label">
@@ -34,8 +35,11 @@
 			<% }) %>
 		</div>
 
-	</div>
-	
+
+	</div> <!-- end main -->
+
+	<% include partials/footer %>
+	</div> <!-- end page-wrapper -->
 
 	<% include partials/console_scripts %>
 </body>

@@ -6,10 +6,11 @@
 	<title>FAQ</title>
 </head>
 <body>
+	<div class="page-wrapper">
 	
 	<% include partials/header %>
 
-	<div class="main">
+	<div class="main has-footer">
 		
 		<div class="index">
 			
@@ -91,8 +92,11 @@
 		<div id="to-top-button">
 			<div class='mdi mdi-arrow-up'></div>
 		</div>
-
-	</div>
+	
+	</div> <!-- end main -->
+	
+	<% include partials/footer %>
+	</div> <!-- end page-wrapper -->
 	
 	<% include partials/console_scripts %>
 </body>

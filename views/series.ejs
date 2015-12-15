@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<% include partials/console_styles %>
-	<title>Series</title>
+	<title>ALL Series</title>
 </head>
 <body>
-	
+	<div class="page-wrapper">
 	<% include partials/header %>
 
-	<div class="main">
+	<div class="main has-footer">
 		
 		<h1 class="view-header">
 			Series
@@ -27,7 +27,10 @@
 		</div>
 		<% }) %>
 
-	</div>
+	</div> <!-- end main -->
+
+	<% include partials/footer %>
+	</div> <!-- end page-wrapper -->
 
 	<% include partials/console_scripts %>
 </body>
