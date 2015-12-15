@@ -34,12 +34,13 @@ router.get('/:series_id', function(req,res,next) {
 
 // show single episode
 router.get('/:series_id/episode/:ep_id', function(req,res,next) {
+	// get ep_index of current episode
 	db.query("SELECT * FROM series as s, episodes as e WHERE s.series_id = e.series_id AND s.series_id = ? AND e.episode_id = ? LIMIT 1;", [req.params.series_id, req.params.ep_id], function(err, episode, fields) {
 		// console.log(episode[0].ep_index)
-
 		var epIndex = episode[0].ep_index;
-		// get previous and next episode id
-		db.query("Select series_id,ep_index,ep_num,title FROM episodes "+
+
+		// get previous and next episodes
+		db.query("Select series_id,episode_id,ep_index,ep_num,title FROM episodes "+
 			"WHERE ("+
 				"ep_index = IFNULL((SELECT min(ep_index) FROM episodes WHERE ep_index > ?),0) "+
 				"OR  ep_index = IFNULL((SELECT max(ep_index) from episodes WHERE ep_index < ?),0)"+
@@ -65,12 +66,17 @@ router.get('/:series_id/episode/:ep_id', function(req,res,next) {
 				}
 			}
 
+			console.log("***")
+			console.log(prevIndex)
+			console.log("^^^")
+			console.log(nextIndex)
+
 			// console.log(prevIndex, nextIndex)
 			res.render('show_episode', {
 				page: 'show_episode',
 				episode: episode[0],
-				prevEpIndex: prevIndex,
-				nextEpIndex: nextIndex
+				prevEp: prevIndex,
+				nextEp: nextIndex
 			});
 			
 		});

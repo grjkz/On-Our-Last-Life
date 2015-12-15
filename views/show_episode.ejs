@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<% include partials/console_styles %>
-	<title>Ep: <%= episode.ep_num %></title>
+	<title>Episode: <%= episode.ep_num %></title>
 </head>
 <body>
 	
@@ -28,14 +28,14 @@
 			</div>
 			
 			<div class="ep-nav">
-				<% if (!prevEpIndex || prevEpIndex != "null") { %>
-				<div class="prev-vid">
-					<a href="/series/<%= prevEpIndex.series_id %>/episode/<%= prevEpIndex.ep_num %>">Previous Episode</a>
+				<% if (prevEp.episode_id || prevEp != "null") { %>
+				<div class="prev-ep">
+					<a href="/series/<%= prevEp.series_id %>/episode/<%= prevEp.episode_id %>">Previous Episode</a>
 				</div>
 				<% } %>
-				<% if (!nextEpIndex || nextEpIndex != "null") { %>
-				<div class="next-vid">
-					<a href="/series/<%= nextEpIndex.series_id %>/episode/<%= nextEpIndex.ep_num %>">Next Episode</a>
+				<% if (nextEp.episode_id || nextEp != "null") { %>
+				<div class="next-ep">
+					<a href="/series/<%= nextEp.series_id %>/episode/<%= nextEp.episode_id %>">Next Episode</a>
 				</div>
 				<% } %>
 			</div>

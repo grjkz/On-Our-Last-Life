@@ -9,3 +9,15 @@
 .video > iframe {
 	max-width: 100%;
 }
+
+.ep-nav {
+	overflow: auto;
+}
+
+.prev-ep {
+	float: left;
+}
+
+.next-ep {
+	float: right;
+}

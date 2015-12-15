@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var flash = require('connect-flash');
+var helmet = require('helmet')
 var path = require('path');
 var ejs = require('ejs');
 // var mysql = require('mysql');
@@ -14,11 +15,16 @@ var passport = require('passport');
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(flash());
+app.use(helmet());
 
 app.use(session({
 	secret: 'nyan',
+	name: 'n82hana',
 	resave: false,
-	saveUninitialized: false
+	saveUninitialized: false,
+	cookie: {
+		httpOnly: true
+	}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
