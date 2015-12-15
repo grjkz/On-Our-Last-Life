@@ -1,10 +1,10 @@
 console.log('admin_controllers.js linked');
 
-var AppControllers = angular.module('appControllers', []);
+var AppControllers = angular.module('appControllers', ['PreloadedData']);
 
-AppControllers.controller('homeCtrl', ['$scope', 'Summary', function($scope, Summary) {
+AppControllers.controller('homeCtrl', ['$scope', 'Summary', 'User', function($scope, Summary, User) {
 	$scope.metaData = Summary.query();
-	
+	$scope.user = User;
 }]);
 
 

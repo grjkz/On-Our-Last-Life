@@ -14,7 +14,8 @@ PassportConfig(passport);
 // show all admin controls
 router.get('/', checkAuth, function(req,res,next) {
 	res.render('admin/index', {
-		page: 'admin'
+		page: 'admin',
+		user: req.user.username
 	});
 });
 

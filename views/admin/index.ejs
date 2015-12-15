@@ -16,5 +16,8 @@
 	</div>
 
 	<% include ../partials/console_scripts %>
+	<script>
+		angular.module('PreloadedData', []).constant('User', '<%= user %>');
+	</script>
 </body>
 </html>
