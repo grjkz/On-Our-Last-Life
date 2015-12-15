@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var favicon = require('serve-favicon');
 var flash = require('connect-flash');
 var helmet = require('helmet')
 var path = require('path');
@@ -11,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 
-
+app.use(favicon(path.join(__dirname + '/public/icons/favicon.ico')));
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(flash());
