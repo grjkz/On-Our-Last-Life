@@ -16,12 +16,19 @@ AppServices.factory('Series', ['$resource', function($resource) {
 
 AppServices.factory('Episode', ['$resource', function($resource) {
 	return $resource('/api/series/:series_id/episodes/:episode_id', 
-		{
-			series_id: '@series_id',
-			episode_id: '@episode_id'
-		}, 
-		{
-			get: {method: "GET", isArray: true},
-			update: {method: "PUT"}
-		});
+	{
+		series_id: '@series_id',
+		episode_id: '@episode_id'
+	}, 
+	{
+		get: {method: "GET", isArray: true},
+		update: {method: "PUT"}
+	});
+}]);
+
+AppServices.factory('Article', ['$resource', function($resource) {
+	return $resource ('/api/articles/:id',
+		{id: '@article_id'}, 
+		{update: {method: "PUT"}}
+	);
 }]);

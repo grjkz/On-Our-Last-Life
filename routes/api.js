@@ -262,4 +262,41 @@ router.delete('/series/:series_id/episodes/:episode_id', function(req,res,next) 
 });
 
 
+///////////////
+/// ARTICLES //
+///////////////
+
+
+// send all articles
+router.get('/articles', function(req,res,next) {
+	db.query("SELECT * FROM articles ORDER BY article_id DESC LIMIT 2;", function(err,results,fields) {
+		console.log(results)
+		res.json(results);
+	});
+});
+
+
+// add article
+router.post('/articles', function(req,res,next) {
+	console.log("ARTICLE POST REQUESTED")
+	console.log(req.body)
+	var article = req.body;
+	
+	if (req.user) { // check for existing session
+		article.owner_username = req.user.username ? req.user.usename : "unknown";
+	} else {
+		article.owner_username = "unknown";
+	}
+
+	db.query("INSERT INTO articles SET ?", article, function(err,result) {
+		if (err) {
+			res.json({error: err.code});
+		} else {
+			console.log(result)
+			res.json(result)
+		}
+	});
+});
+
+
 module.exports = router;

@@ -10,14 +10,28 @@
 
 	<div class="main">
 		
-		<div class="news">
+		<div class="latest-video">
+			<h1 class="header-label">
+				Latest Episode
+			</h1>
+			<div class="episode">
+				<h2><%= latest_episode.title %></h2>
+				<h5>uploaded: <%=latest_episode.date %></h5>
+				<%- latest_episode.embed %>
+			</div>
+		</div>
+
+		<div class="articles">
 			<h1 class="header-label">
 				News
 			</h1>
-		</div>
-		
-		<div class="latest-video">
-			<%- last_uploaded.embed %>
+			<% articles.forEach(function(article) { %>
+			<div class="article">
+				<h2><%= article.article_title %></h2>
+				<h5>by <%= article.owner_username %> on <%= article.date %></h5>
+				<p><%= article.article_body %></p>
+			</div>
+			<% }) %>
 		</div>
 
 	</div>

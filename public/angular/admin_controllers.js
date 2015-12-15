@@ -21,9 +21,9 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			console.log(res)
 			if (res.error) {
 				// api's error handler
-				globalMessage("Error: " + res.error);
+				globalMessage("Error: " + res.error, 'failure');
 			} else {
-				globalMessage('"' + $scope.seriesName + '" has been added!');
+				globalMessage('"' + $scope.seriesName + '" has been added!', "success");
 
 				var newId = res.insertId;
 				// push to series array? to make it update select>option
@@ -31,7 +31,7 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			}
 		}, function(err) {
 			console.log(err);
-			globalMessage("Something went wrong! Try again later.");
+			globalMessage("Something went wrong! Try again later.", 'error');
 		});
 	};
 
@@ -51,13 +51,13 @@ AppControllers.controller('addcontentCtrl', ['$scope', 'Series', 'Episode', func
 			console.log(res)
 			if (res.error) {
 				// api's error handler
-				globalMessage("Error: " + res.error);
+				globalMessage("Error: " + res.error, 'failure');
 			} else {
-				globalMessage('"' + $scope.epTitle + '" has been added!');
+				globalMessage('"' + $scope.epTitle + '" has been added!', 'success');
 			}
 		}, function(err) {
 			console.log(err);
-			globalMessage("Something went wrong! Try again later.");
+			globalMessage("Something went wrong! Try again later.", 'error');
 		});
 	};
 }]); // END addcontentCtrl
@@ -81,7 +81,7 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Se
 		// if no series has been clicked on, do nothing
 		if (!$scope.editItem.series_id) {
 			console.log('Pick something to edit first!');
-			globalMessage("Pick something to edit first!");
+			globalMessage("Pick something to edit first!", 'error');
 			return false;
 		}
 		
@@ -92,14 +92,14 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Se
 		$scope.editItem.$update(function(res) {
 			if (res.error) {
 				console.log(res.error)
-				globalMessage("Error: " + res.error);
+				globalMessage("Error: " + res.error, 'failure');
 			} else {
-				globalMessage('"' + $scope.editItem.name + '" updated!');
+				globalMessage('"' + $scope.editItem.name + '" updated!', 'success');
 			}
 			console.log(res)
 		}, function(res) {
 			// send error
-			globalMessage("Something went wrong! Try again later.");
+			globalMessage("Something went wrong! Try again later.", 'error');
 		});
 	};
 
@@ -113,14 +113,14 @@ AppControllers.controller('seriesCtrl', ['$scope', 'Series', function($scope, Se
 			deleteItem.$delete(function(res) {
 				if (res.error) {
 					console.log(res.error)
-					globalMessage("Error: " + res.error);
+					globalMessage("Error: " + res.error, 'failure');
 				} else {
 					$scope.series.splice(index,1); // removes object so the DOM element vanishes
-					globalMessage('"' + seriesName + '" DELETED!!!');
+					globalMessage('"' + seriesName + '" DELETED!!!', 'success');
 				}
 			}, function(res) {
 				console.log(res)
-				globalMessage("Something went wrong! Try again later.");
+				globalMessage("Something went wrong! Try again later.", 'error');
 			});
 		}
 	};
@@ -147,7 +147,7 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 		// if no episode has been clicked on, do nothing
 		if (!$scope.editItem.episode_id) {
 			console.log('Pick something to edit first!');
-			globalMessage("Pick something to edit first!");
+			globalMessage("Pick something to edit first!", 'failure');
 			return false;
 		}
 		
@@ -161,14 +161,14 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 		$scope.editItem.$update(function(res) {
 			if (res.error) {
 				console.log(res.error)
-				globalMessage("Error: " + res.error);
+				globalMessage("Error: " + res.error, 'failure');
 			} else {
-				globalMessage('"' + $scope.editItem.name + '" updated!');
+				globalMessage('"' + $scope.editItem.name + '" updated!', 'success');
 			}
 			console.log(res)
 		}, function(res) {
 			// send error
-			globalMessage("Something went wrong! Try again later.");
+			globalMessage("Something went wrong! Try again later.", 'error');
 		});
 	};
 
@@ -180,17 +180,43 @@ AppControllers.controller('episodesCtrl', ['$scope', '$routeParams', 'Episode', 
 			deleteItem.$delete(function(res) {
 				if (res.error) {
 					console.log(res.error)
-					globalMessage("Error: " + res.error);
+					globalMessage("Error: " + res.error, 'failure');
 				} else {
 					$scope.episodes.splice(index,1); // removes object so the DOM element vanishes
-					globalMessage('"' + episodeTitle + '" DELETED!!!');
+					globalMessage('"' + episodeTitle + '" DELETED!!!', 'success');
 				}
 			}, function(res) {
 				console.log(res)
-				globalMessage("Something went wrong! Try again later.");
+				globalMessage("Something went wrong! Try again later.", 'error');
 			});
 		}
 	};
 
 
 }]); // END episodesCtrl
+
+
+AppControllers.controller('addArticleCtrl', ['$scope', 'Article', function($scope, Article) {
+	$scope.addArticle = function() {
+		// check for empty fields
+		if (!$scope.articleTitle || !$scope.articleBody) {
+			globalMessage("Must have Title and Body!", 'failure');
+			return false;
+		}
+
+		var article = new Article();
+		article.article_title = $scope.articleTitle;
+		article.article_body = $scope.articleBody;
+
+		article.$save(function(res) {
+			if (res.error) {
+				globalMessage('Error: ' + res.error, 'failure');
+			} else {
+				globalMessage('"' + $scope.articleTitle + '" has been added!', 'success');
+			}
+		}, function(err) {
+			console.log(err);
+			globalMessage("Something went wrong! Try again later.", 'error');
+		});
+	};
+}]);

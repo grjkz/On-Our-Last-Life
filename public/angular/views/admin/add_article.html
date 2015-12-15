@@ -1,0 +1,23 @@
+<div id="add-article-view">
+	
+	<div class="view-header">
+		<h1>Add Article/Story/News</h1>
+	</div>
+	
+	<div class="notes">
+		<p class="warning">Article will be added under your username</p>
+	</div>
+
+	<div class="add-article">
+		
+		<form id="add-article-form" ng-submit="addArticle()">
+			<input ng-model="articleTitle" type="text" id="article-title" placeholder="Title / Header">
+
+			<textarea ng-model="articleBody" id="article-body" cols="30" rows="10" placeholder="What do you want to say?"></textarea>
+
+			<button>Add Article</button>
+		</form>
+
+	</div>
+
+</div>
