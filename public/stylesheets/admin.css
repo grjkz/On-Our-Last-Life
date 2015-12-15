@@ -118,9 +118,9 @@
 	box-shadow: 1px 2px 10px rgba(0,0,0,0.4);
 }
 
-.series,
-.episode,
-.article {
+.series:not(:last-child),
+.episode:not(:last-child),
+.article:not(:last-child) {
 	overflow: auto;
 	margin: 18px 0;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
