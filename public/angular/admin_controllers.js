@@ -220,3 +220,39 @@ AppControllers.controller('addArticleCtrl', ['$scope', 'Article', function($scop
 		});
 	};
 }]);
+
+
+AppControllers.controller('articlesCtrl', ['$scope', 'Article', function($scope, Article) {
+	$scope.articles = Article.query();
+	$scope.editItem = new Article();
+
+	// fills form with respective article data
+	$scope.fillForm = function(index) {
+		$scope.editItem = $scope.articles[index];
+		// console.log(editItem)
+		$scope.articleTitle = $scope.editItem.article_title;
+		$scope.articleBody = $scope.editItem.article_body;
+	};
+
+	// delete article
+	$scope.delete = function(index) {
+		var deleteItem = $scope.articles[index];
+		var articleTitle = angular.copy(deleteItem.article_title);
+		var confirmed = confirm('Delete: \"' + articleTitle + '"?');
+		if (confirmed) {
+			deleteItem.$delete(function(res) {
+				if (res.error) {
+					console.log(res.error)
+					globalMessage("Error: " + res.error, 'failure')
+				} else {
+					$scope.articles.splice(index,1); // removes object so the DOM element vanishes
+					globalMessage('"' + articleTitle + '" DELETED!!!', 'success');
+				}
+			}, function(err) {
+				console.log(err)
+				globalMessage("Something went wrong! Try again later.", 'error');
+			});
+		}
+	};
+
+}]);

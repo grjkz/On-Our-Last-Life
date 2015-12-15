@@ -28,6 +28,11 @@ App.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'angular/views/admin/add_article.html',
 			controller: 'addArticleCtrl'
 		})
+
+		.when('/articles', {
+			templateUrl: 'angular/views/admin/show_articles.html',
+			controller: 'articlesCtrl'
+		})
 		
 		.otherwise({
 			redirectTo: '/'

@@ -19,11 +19,13 @@
 
 		<div class="edit-menu">
 			<h3 class="center">Edit Menu:</h3>
-			<label for="series-name">Series Name:</label>
-			<input type="text" id="series-name" placeholder="Series Name" value="{{seriesName}}" ng-model="seriesName">
-			<label for="series-description">Description:</label>
-			<textarea id="series-description" rows="10" placeholder="Series Description" ng-model="seriesDescription">{{seriesDescription}}</textarea>
-			<button class="update-button" ng-click="update()">Update</button>
+			<form ng-submit="update()">
+				<label for="series-name">Series Name:</label>
+				<input type="text" id="series-name" placeholder="Series Name" value="{{seriesName}}" ng-model="seriesName">
+				<label for="series-description">Description:</label>
+				<textarea id="series-description" rows="10" placeholder="Series Description" ng-model="seriesDescription">{{seriesDescription}}</textarea>
+				<button class="update-button">Update</button>
+			</form>
 		</div>
 	</div>
 

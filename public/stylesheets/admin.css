@@ -96,18 +96,20 @@
  
  * SERIES VIEW
  * EPISODES VIEW
- 
+ * ARTICLES VIEW
  */
 
 .series-controls,
-.episodes-controls {
+.episodes-controls,
+.articles-controls {
 	display: flex;
 	align-items: flex-start;
 }
 
 .series-wrapper,
 .edit-menu,
-.episodes-wrapper {
+.episodes-wrapper,
+.articles-wrapper {
 	width: 50%;
 	margin: 0px 12px;
 	padding: 12px;
@@ -117,7 +119,8 @@
 }
 
 .series,
-.episode {
+.episode,
+.article {
 	overflow: auto;
 	margin: 18px 0;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -159,12 +162,12 @@ Hacky way to show a message when there is no element created from ng-repeat (emp
 	/*position: fixed;*/
 }
 
-.edit-menu > * {
+.edit-menu > form > * {
 	display: block;
 	width: 100%;
 }
 
-.edit-menu > label {
+.edit-menu > form > label {
 	margin: 24px 0px 8px;
 }
 
@@ -176,3 +179,7 @@ Hacky way to show a message when there is no element created from ng-repeat (emp
 /*textarea {
 	width: 100%;
 }*/
+
+/**
+ * EDIT ARTICLES
+ */

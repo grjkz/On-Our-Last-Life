@@ -1,0 +1,40 @@
+<div class="articles-view">
+	
+	<div class="view-header">
+		<h1>Articles</h1>
+	</div>
+	
+	<div class="articles-controls">
+
+		<div class="articles-wrapper">
+			
+			<div class="article" ng-repeat="a in articles">
+				<div class="article-title">{{a.article_title}}</div>
+				<h5>{{a.date}}</h5>
+
+				<div class="actions">
+					<button class='edit-button' ng-click="fillForm($index)">Edit</button>
+					<button class='delete-button' ng-click="delete($index)">Delete</button>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="edit-menu">
+			<h3 class="center">Edit Menu:</h3>
+			<form ng-submit="update()">
+				<label for="article-title">Title:</label>
+				<input id="article-title" type="text" placeholder="Title" ng-model="articleTitle">
+				
+				<label for="article-body">Body:</label>
+				<textarea id="article-body" cols="30" rows="10" placeholder="What do you want to say?" ng-model="articleBody"></textarea>
+
+				<button class="update-button">Update</button>
+			</form>
+		</div>
+
+	</div>
+
+
+</div>

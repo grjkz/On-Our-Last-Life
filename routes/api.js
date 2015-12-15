@@ -269,7 +269,7 @@ router.delete('/series/:series_id/episodes/:episode_id', function(req,res,next) 
 
 // send all articles
 router.get('/articles', function(req,res,next) {
-	db.query("SELECT * FROM articles ORDER BY article_id DESC LIMIT 2;", function(err,results,fields) {
+	db.query("SELECT *, DATE_FORMAT(article_added, '%b %d, %Y (%T)') as date FROM articles ORDER BY article_id;", function(err,results,fields) {
 		console.log(results)
 		res.json(results);
 	});
@@ -298,5 +298,19 @@ router.post('/articles', function(req,res,next) {
 	});
 });
 
+// delete article
+router.delete('/articles/:id', function(req,res,next) {
+	console.log("delete article requested")
+	db.query("DELETE FROM articles WHERE article_id = ? LIMIT 1;", req.params.id, function(err, result) {
+		if (err) {
+			console.log(err)
+			res.json({error: err.code});
+		} else {
+			console.log(result)
+			res.json(result);
+		}
+	});
+
+});
 
 module.exports = router;
