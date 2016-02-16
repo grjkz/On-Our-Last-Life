@@ -81,6 +81,7 @@ function checkAuth(req, res, next) {
 	return false;
 	// check if session is stored
   if (!req.session.passport || !req.session.passport.user || !req.user.admin) {
+    // redirect to homepage if no admin session
     res.redirect('/');
   } else {
   	// force forget cache history so logging out and hitting 'back' wont be able to rerender the page
